@@ -83,7 +83,104 @@ The notebook should be structured to cover the following aspects logically:
 2.  **Core Advantages (The "How")**
     *   **I/O Efficiency (Column Pruning):** Demonstrate how analytical queries that select a subset of columns only read the data they need, drastically reducing I/O. This is the most important concept to land.
     *   **Compression Efficiency:** Show how grouping data of the same type (e.g., all integers, all strings) leads to much better compression ratios. Compare the file size of a dataset saved as CSV vs. Parquet.
-    *   **Schema Evolution:** Briefly explain how formats like Parquet embed the schema and support its evolution, which is a common real-world challenge.
+    *   **Schema Evolution: The Key to Building Robust Data Pipelines**
+
+        #### Part 1: What is Schema Evolution?
+
+        A **schema** is the blueprint of your data: its column names and their data types (e.g., `user_id` is an Integer, `email` is a String). **Schema Evolution** is the inevitable reality that this blueprint will change over time as business needs evolve.
+
+        It's one of the most critical concepts for data engineers because it's the difference between a brittle, high-maintenance data platform and a robust, agile one.
+
+        Common types of schema changes include:
+        *   **Adding a new column:** A safe, backward-compatible change. Old data can be read by new code, which will typically see `null` values for the new column.
+        *   **Removing a column:** Can be a breaking change if downstream consumers expect it.
+        *   **Renaming a column:** A breaking change.
+        *   **Changing a column's data type:** A breaking change (e.g., changing a String to an Integer).
+
+        Formats like Parquet are specifically designed to handle these changes gracefully, especially the most common case of adding new columns.
+
+        #### Part 2: A Real-World Use Case
+
+        **The Scenario:** Imagine we have an application with millions of users. When we first launched (V1), we only collected basic information. Our data pipeline processes files with this simple V1 schema:
+        *   `user_id` (Integer)
+        *   `username` (String)
+
+        **The New Business Need:** The product team now wants to analyze user retention. To do this, they need to know when each user signed up. This requires adding a new column to our data, creating a V2 schema:
+        *   `user_id` (Integer)
+        *   `username` (String)
+        *   `signup_date` (Date)
+
+        **The Challenge with CSV:** If our data is in CSV files, our pipeline is in trouble. When our V2 processing code (which expects three columns) tries to read an old V1 file (which only has two), it will crash or produce corrupted data. We would be forced into a costly and risky manual data migration project.
+
+        **The Parquet Solution:** Parquet files are **self-describing**. The schema is stored in the file's metadata. This allows us to build a robust pipeline that can inspect the data's schema *before* processing it, and adapt on the fly.
+
+        #### Part 3: Code Demonstration - Brittle CSV vs. Robust Parquet
+
+        This code simulates our V2 application trying to read an old V1 file.
+
+        ```python
+        import polars as pl
+        from pathlib import Path
+        import os
+
+        # --- Setup: Define schemas and create a V1 data file ---
+        V1_SCHEMA = {"user_id": pl.Int64, "username": pl.Utf8}
+        V2_SCHEMA = {"user_id": pl.Int64, "username": pl.Utf8, "signup_date": pl.Date}
+        CSV_V1_FILE = Path("user_v1.csv")
+        PARQUET_V1_FILE = Path("user_v1.parquet")
+        df_v1 = pl.DataFrame({"user_id": [1, 2], "username": ["alice", "bob"]})
+        df_v1.write_csv(CSV_V1_FILE)
+        df_v1.write_parquet(PARQUET_V1_FILE)
+
+        # --- 1. The Brittle CSV Approach ---
+        print("--- Attempting to process CSV with V2 logic (will fail) ---")
+        try:
+            # V2 app hardcodes the columns it wants. This fails because
+            # `signup_date` does not exist in the V1 CSV.
+            df = pl.read_csv(CSV_V1_FILE, columns=list(V2_SCHEMA.keys()))
+        except Exception as e:
+            print(f"FAILED to process {CSV_V1_FILE}. Error: {e}")
+
+        # --- 2. The Robust Parquet Approach (Backward Compatibility) ---
+        print("\n--- Robustly processing Parquet with V2 logic ---")
+        # Step A: Read ONLY the schema from the Parquet file. This is fast.
+        file_schema = pl.read_parquet_schema(PARQUET_V1_FILE)
+        
+        # Step B: Reconcile the actual schema with the expected V2 schema.
+        expected_cols, present_cols = set(V2_SCHEMA.keys()), set(file_schema.keys())
+        missing_cols = expected_cols - present_cols
+        
+        # Step C: Read present columns and add missing ones as null.
+        df = pl.read_parquet(PARQUET_V1_FILE, columns=list(present_cols))
+        if missing_cols:
+            print(f"Schema difference detected. Missing: {missing_cols}. Adding them with nulls.")
+            df = df.with_columns([
+                pl.lit(None, dtype=V2_SCHEMA[col]).alias(col) for col in missing_cols
+            ])
+        
+        df = df.select(list(V2_SCHEMA.keys())) # Ensure final column order
+        print(f"Successfully processed {PARQUET_V1_FILE}. Final DataFrame:\n{df}")
+
+        # Cleanup
+        os.remove(CSV_V1_FILE); os.remove(PARQUET_V1_FILE)
+        ```
+
+        #### Part 4: The "Magic" Explained: `read_parquet_schema` vs. `read_csv(n_rows=0)`
+
+        The key to the robust Parquet approach is the `pl.read_parquet_schema()` function. You might think the trick `pl.read_csv("file.csv", n_rows=0)` is equivalent, but it's not.
+
+        The critical difference is **data types**.
+
+        *   **`read_parquet_schema()`** reads the rich, typed schema stored in the Parquet metadata. It knows `user_id` is an `Int64`.
+        *   **`read_csv(n_rows=0)`** only reads the header row. It has no information about types and defaults everything to `Utf8` (string).
+
+        | Feature | `pl.read_csv(n_rows=0)` | `pl.read_parquet_schema()` |
+        | :--- | :--- | :--- |
+        | **Schema Info** | Returns only column **names**. | Returns column **names and data types**. |
+        | **Data Types** | All columns default to `Utf8` (string). | Returns the true, accurate data types. |
+        | **Reliability** | Relies on a **convention** (first line is a header). | Relies on a **specification** (schema is required). |
+
+        This ability to retrieve a full, typed schema efficiently is what enables robust, adaptive data pipelines.
 
 3.  **Practical Demonstration**
     *   Generate a sample dataset with a variety of data types and a significant number of columns.
