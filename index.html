@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Engineering Notebooks</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #343a40;
+      }
+      header {
+        background: linear-gradient(135deg, #007bff, #6610f2);
+        color: #fff;
+        padding: 3rem 0;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 3.2rem;
+        font-weight: 700;
+      }
+      header p {
+        margin: 0.8rem 0 2rem;
+        font-size: 1.4rem;
+        opacity: 0.9;
+      }
+      .cta-button {
+        background: #28a745;
+        color: #fff;
+        padding: 1rem 2.5rem;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 50px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+      .cta-button:hover {
+        background: #218838;
+        transform: translateY(-2px);
+      }
+      main {
+        padding: 3rem 2rem;
+        max-width: 1000px;
+        margin: auto;
+      }
+      section {
+        background: #fff;
+        border-radius: 10px;
+        padding: 2.5rem;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+      h2 {
+        color: #007bff;
+        font-size: 2.2rem;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 0.8rem;
+      }
+      h3 {
+        color: #6610f2;
+        font-size: 1.6rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 1rem;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      ul li {
+        background: #e9f7ef;
+        margin-bottom: 0.5rem;
+        padding: 0.8rem 1.2rem;
+        border-left: 4px solid #28a745;
+        border-radius: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1.5rem;
+      }
+      th, td {
+        border: 1px solid #dee2e6;
+        padding: 12px 15px;
+        text-align: left;
+      }
+      th {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: 600;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+      footer {
+        text-align: center;
+        margin: 3rem 0;
+        font-size: 0.95rem;
+        color: #6c757d;
+        padding: 1.5rem;
+        background-color: #e9ecef;
+        border-top: 1px solid #dee2e6;
+      }
+      footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Data Engineering Notebooks</h1>
+      <p>High-quality, practical notebooks for learning data engineering concepts, tasks, and tools.</p>
+      <a href="#notebooks" class="cta-button">Explore Notebooks</a>
+    </header>
+    <main>
+      <section id="introduction">
+        <h2>Welcome to Data Engineering Notebooks</h2>
+        <p>
+          This repository is designed for practitioners who want to build real-world skills and understanding in data engineering.
+          Dive into comprehensive tutorials, hands-on projects, and master industry-standard tools.
+          Whether you're a beginner or an experienced professional, mastering data engineering concepts is essential for creating efficient, scalable, and reliable data pipelines.
+        </p>
+      </section>
+
+      <section id="notebooks">
+        <h2>Featured Notebooks</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Notebook</th>
+              <th>Description & Goals</th>
+              <th>Open in Colab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="notebooks/dask/graph_dask.ipynb">graph_dask.ipynb</a></td>
+              <td>Big Data analytics with Dask. Covers GCP setup, data prep, and containerization.</td>
+              <td><a href="https://colab.research.google.com/github/YOUR_GITHUB_REPO_PATH/notebooks/dask/graph_dask.ipynb" class="cta-button">Open In Colab</a></td>
+            </tr>
+            <tr>
+              <td><a href="notebooks/polars/graph_polars.ipynb">graph_polars.ipynb</a></td>
+              <td>Fast DataFrame analytics with Polars. Focuses on performance and usability.</td>
+              <td><a href="https://colab.research.google.com/github/YOUR_GITHUB_REPO_PATH/notebooks/polars/graph_polars.ipynb" class="cta-button">Open In Colab</a></td>
+            </tr>
+            <tr>
+              <td><a href="notebooks/spark/graph_spark.ipynb">graph_spark.ipynb</a></td>
+              <td>Distributed analytics with Apache Spark. Demonstrates scalable graph processing.</td>
+              <td><a href="https://colab.research.google.com/github/YOUR_GITHUB_REPO_PATH/notebooks/spark/graph_spark.ipynb" class="cta-button">Open In Colab</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="roadmap">
+        <h2>Goals and Roadmap: Mastering Data Engineering</h2>
+        <p>This repository provides a structured path to mastering key data engineering domains:</p>
+
+        <h3>🗄️ 1. Data Modeling & Warehousing</h3>
+        <p>The foundation for large-scale analytics. Understand OLTP vs. OLAP, Dimensional Modeling (Star/Snowflake Schema), Fact and Dimension tables, and the benefits of Columnar Storage Formats like Parquet. Explore Data Lake and Lakehouse architectures.</p>
+        <ul>
+          <li>**Concepts:** OLTP vs. OLAP, Dimensional Modeling, Star Schema, Snowflake Schema, Fact tables, Dimension tables, Columnar Storage Formats (Apache Parquet, Apache ORC), Data Lake, Lakehouse.</li>
+          <li>**Skills:** Design Star Schemas, convert JSON to partitioned Parquet datasets.</li>
+          <li>**Tools:** Google BigQuery, Amazon Redshift, Snowflake, dbt.</li>
+        </ul>
+
+        <h3>⚙️ 2. Data Processing & Transformation (ETL / ELT)</h3>
+        <p>The heart of data engineering — moving and cleaning data. Differentiate between ETL and ELT workflows, and focus on Data Quality & Validation and Idempotency in pipelines.</p>
+        <ul>
+          <li>**Concepts:** ETL vs. ELT, Data Quality & Validation, Idempotency.</li>
+          <li>**Skills:** Build batch pipelines (extract, load, transform, populate warehouse), write data quality tests.</li>
+          <li>**Tools:** Pandas, Polars, SQL, dbt, Airbyte.</li>
+        </ul>
+
+        <h3>🗓️ 3. Workflow Orchestration</h3>
+        <p>Pipelines are graphs of dependent tasks — orchestrators manage them. Learn about DAGs (Directed Acyclic Graphs), Scheduling & Dependency Management, and Monitoring & Alerting for pipeline failures.</p>
+        <ul>
+          <li>**Concepts:** DAGs (Directed Acyclic Graphs), Scheduling & Dependency Management, Monitoring & Alerting.</li>
+          <li>**Skills:** Define multi-step pipelines as DAGs, implement scheduling, centralized logging, and alerting.</li>
+          <li>**Tools:** Apache Airflow, Prefect, Dagster.</li>
+        </ul>
+
+        <h3>🌐 4. Big Data Technologies & Distributed Computing</h3>
+        <p>Handle data that won't fit on a single machine. Grasp Distributed Computing Fundamentals, the MapReduce Paradigm, and Lazy Evaluation in frameworks.</p>
+        <ul>
+          <li>**Concepts:** Distributed Computing Fundamentals, MapReduce Paradigm, Lazy Evaluation.</li>
+          <li>**Skills:** Write PySpark jobs for data lake transformations, apply partitioning strategies.</li>
+          <li>**Tools:** Apache Spark / PySpark.</li>
+        </ul>
+
+        <h3>⚡ 5. Streaming & Real-Time Data Processing</h3>
+        <p>Process events as they arrive — low-latency insights. Understand the trade-offs between Batch vs Streaming, Event-Streaming Platforms like Apache Kafka, and Windowing techniques.</p>
+        <ul>
+          <li>**Concepts:** Batch vs Streaming, Event-Streaming Platforms (Apache Kafka), Windowing.</li>
+          <li>**Skills:** Build streaming pipelines for real-time aggregations.</li>
+          <li>**Tools:** Apache Kafka, Spark Structured Streaming, Apache Flink.</li>
+        </ul>
+
+        <h3>☁️ 6. Infrastructure & Cloud Services</h3>
+        <p>Everything runs on infrastructure — increasingly cloud-native. Explore Cloud Data Services from major providers and implement Infrastructure as Code (IaC).</p>
+        <ul>
+          <li>**Concepts:** Cloud Data Services (AWS, GCP, Azure), Infrastructure as Code (IaC).</li>
+          <li>**Skills:** Provision cloud resources (storage, warehouse, Spark cluster), reproduce setups with Terraform.</li>
+          <li>**Tools:** AWS (S3, Redshift, Glue, EMR), GCP (Cloud Storage, BigQuery, Dataproc), Azure (Blob Storage, Synapse, Databricks), Terraform.</li>
+        </ul>
+      </section>
+
+      <section id="contributing">
+        <h2>Contributing</h2>
+        <p>
+          Contributions are welcome! Please fork the repository, create a notebook branch, and submit a pull request.
+          Your contributions help make this a valuable resource for the data engineering community.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>
+        Happy Learning! 🚀 |
+        <a href="https://github.com/YOUR_GITHUB_REPO_PATH">GitHub Repository</a> |
+        Licensed under the MIT License.
+      </p>
+    </footer>
+  </body>
+</html>
