@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Engineering Notebooks</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Data Engineering Notebooks</h1>
+      <p>
+        High-quality, practical notebooks for learning data engineering
+        concepts, tasks, and tools.
+      </p>
+      <a href="#notebooks" class="cta-button">Explore Notebooks</a>
+    </header>
+    <main>
+      <section id="introduction">
+        <h2>Welcome to Data Engineering Notebooks</h2>
+        <p>
+          This repository is designed for practitioners who want to build
+          real-world skills and understanding in data engineering. Dive into
+          comprehensive tutorials, hands-on projects, and master
+          industry-standard tools. Whether you're a beginner or an experienced
+          professional, mastering data engineering concepts is essential for
+          creating efficient, scalable, and reliable data pipelines.
+        </p>
+      </section>
+
+      <section id="notebooks">
+        <h2>Featured Notebooks</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Notebook</th>
+              <th>Description & Goals</th>
+              <th>Open in Colab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="../notebooks/columnar_storage.ipynb"
+                  >columnar_storage.ipynb</a
+                >
+              </td>
+              <td>
+                A comprehensive guide to columnar storage formats, their
+                advantages, and practical applications using Polars and Apache
+                Arrow.
+              </td>
+              <td>
+                <a
+                  href="https://colab.research.google.com/github/swiftai-dev/data-notebooks/blob/main/notebooks/columnar_storage.ipynb"
+                  class="cta-button table-cta-button"
+                  >Open In Colab</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="roadmap">
+        <h2>Goals and Roadmap: Mastering Data Engineering</h2>
+        <p>
+          This repository provides a structured path to mastering key data
+          engineering domains:
+        </p>
+
+        <h3>🗄️ 1. Data Modeling & Warehousing</h3>
+        <p>
+          The foundation for large-scale analytics. Understand OLTP vs. OLAP,
+          Dimensional Modeling (Star/Snowflake Schema), Fact and Dimension
+          tables, and the benefits of Columnar Storage Formats like Parquet.
+          Explore Data Lake and Lakehouse architectures.
+        </p>
+        <ul>
+          <li>
+            <strong>Concepts:</strong> OLTP vs. OLAP, Dimensional Modeling, Star
+            Schema, Snowflake Schema, Fact tables, Dimension tables, Columnar
+            Storage Formats (Apache Parquet, Apache ORC), Data Lake, Lakehouse.
+          </li>
+          <li>
+            <strong>Skills:</strong> Design Star Schemas, convert JSON to
+            partitioned Parquet datasets.
+          </li>
+          <li>
+            <strong>Tools:</strong> Google BigQuery, Amazon Redshift, Snowflake,
+            dbt.
+          </li>
+        </ul>
+
+        <h3>⚙️ 2. Data Processing & Transformation (ETL / ELT)</h3>
+        <p>
+          The heart of data engineering — moving and cleaning data.
+          Differentiate between ETL and ELT workflows, and focus on Data Quality
+          & Validation and Idempotency in pipelines.
+        </p>
+        <ul>
+          <li>
+            <strong>Concepts:</strong> ETL vs. ELT, Data Quality & Validation,
+            Idempotency.
+          </li>
+          <li>
+            <strong>Skills:</strong> Build batch pipelines (extract, load,
+            transform, populate warehouse), write data quality tests.
+          </li>
+          <li><strong>Tools:</strong> Pandas, Polars, SQL, dbt, Airbyte.</li>
+        </ul>
+
+        <h3>🗓️ 3. Workflow Orchestration</h3>
+        <p>
+          Pipelines are graphs of dependent tasks — orchestrators manage them.
+          Learn about DAGs (Directed Acyclic Graphs), Scheduling & Dependency
+          Management, and Monitoring & Alerting for pipeline failures.
+        </p>
+        <ul>
+          <li>
+            <strong>Concepts:</strong> DAGs (Directed Acyclic Graphs),
+            Scheduling & Dependency Management, Monitoring & Alerting.
+          </li>
+          <li>
+            <strong>Skills:</strong> Define multi-step pipelines as DAGs,
+            implement scheduling, centralized logging, and alerting.
+          </li>
+          <li><strong>Tools:</strong> Apache Airflow, Prefect, Dagster.</li>
+        </ul>
+
+        <h3>🌐 4. Big Data Technologies & Distributed Computing</h3>
+        <p>
+          Handle data that won't fit on a single machine. Grasp Distributed
+          Computing Fundamentals, the MapReduce Paradigm, and Lazy Evaluation in
+          frameworks.
+        </p>
+        <ul>
+          <li>
+            <strong>Concepts:</strong> Distributed Computing Fundamentals,
+            MapReduce Paradigm, Lazy Evaluation.
+          </li>
+          <li>
+            <strong>Skills:</strong> Write PySpark jobs for data lake
+            transformations, apply partitioning strategies.
+          </li>
+          <li><strong>Tools:</strong> Apache Spark / PySpark.</li>
+        </ul>
+
+        <h3>⚡ 5. Streaming & Real-Time Data Processing</h3>
+        <p>
+          Process events as they arrive — low-latency insights. Understand the
+          trade-offs between Batch vs Streaming, Event-Streaming Platforms like
+          Apache Kafka, and Windowing techniques.
+        </p>
+        <ul>
+          <li>
+            <strong>Concepts:</strong> Batch vs Streaming, Event-Streaming
+            Platforms (Apache Kafka), Windowing.
+          </li>
+          <li>
+            <strong>Skills:</strong> Build streaming pipelines for real-time
+            aggregations.
+          </li>
+          <li>
+            <strong>Tools:</strong> Apache Kafka, Spark Structured Streaming,
+            Apache Flink.
+          </li>
+        </ul>
+
+        <h3>☁️ 6. Infrastructure & Cloud Services</h3>
+        <p>
+          Everything runs on infrastructure — increasingly cloud-native. Explore
+          Cloud Data Services from major providers and implement Infrastructure
+          as Code (IaC).
+        </p>
+        <ul>
+          <li>
+            <strong>Concepts:</strong> Cloud Data Services (AWS, GCP, Azure),
+            Infrastructure as Code (IaC).
+          </li>
+          <li>
+            <strong>Skills:</strong> Provision cloud resources (storage,
+            warehouse, Spark cluster), reproduce setups with Terraform.
+          </li>
+          <li>
+            <strong>Tools:</strong> AWS (S3, Redshift, Glue, EMR), GCP (Cloud
+            Storage, BigQuery, Dataproc), Azure (Blob Storage, Synapse,
+            Databricks), Terraform.
+          </li>
+        </ul>
+      </section>
+
+      <section id="contributing">
+        <h2>Contributing</h2>
+        <p>
+          Contributions are welcome! Please fork the repository, create a
+          notebook branch, and submit a pull request. Your contributions help
+          make this a valuable resource for the data engineering community.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>
+        Happy Learning! 🚀 |
+        <a href="https://github.com/swiftai-dev/data-notebooks"
+          >GitHub Repository</a
+        >
+        | Licensed under the MIT License.
+      </p>
+    </footer>
+  </body>
+</html>
